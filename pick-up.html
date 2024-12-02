@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Selector</title>
+    <!-- Importing the Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="pick-up-page.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Div 1 -->
+        <div class="box box1">
+            <img src="images/station-bg.png" alt="Image 1">
+            <div class="text-overlay" id="button1" onclick="openFullscreen(1)">Pick-Up Station</div>
+        </div>
+        <!-- Div 2 -->
+        <div class="box2">
+            <h2>KNOW YOUR DABBA</h2>
+            <p>The lunchboxes are picked up late in the morning, primarily delivered using bicycles and trains, and returned empty in the afternoon. Select the pick up & drop-in station to begin the journey.</p>
+
+            <!-- Start Journey Button -->
+            <button id="startJourneyButton" onclick="TravelPage()">Start Journey</button>
+        </div>
+        <!-- Div 3 -->
+        <div class="box box3">
+            <img src="images/station-bg.png" alt="Image 2">
+            <div class="text-overlay" id="button2" onclick="openFullscreen(2)">Drop Station</div>
+        </div>
+    </div>
+
+    
+    <!-- Station Selection Popup -->
+    <div class="fullscreen-container" id="fullscreenContainer" onclick="closeFullscreen(event)">
+        <div class="content" id="stationsList">
+            <!-- Existing Station options -->
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Chruchgate"><h3>Chruchgate</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Mumbai Central"><h3>Mumbai Central</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Dadar"><h3>Dadar</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Bandra"><h3>Bandra</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Andheri"><h3>Andheri</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Borivali"><h3>Borivali</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Bhyandar"><h3>Bhyandar</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Vasai"><h3>Vasai</h3></div>
+            
+            <!-- New Station options (8 more stations) -->
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Malad"><h3>CSMT</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Masjid"><h3>Masjid</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Dockyard Road"><h3>Dockyard Road</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Wadala Road"><h3>Wadala Road</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Kurla"><h3>Kurla</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Vashi"><h3>Vashi</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Nerul"><h3>Nerul</h3></div>
+            <div class="option" style="background-image: url('images/station-bg.png');" data-station="Panvel"><h3>Panvel</h3></div>
+        </div>
+    </div>
+
+
+
+    <!-- translate -->
+
+    <script>
+        const translations = {
+          "KNOW YOUR DABBA": "तुमचा डब्बा जाणून घ्या",
+          "The lunchboxes are picked up late in the morning, primarily delivered using bicycles and trains, and returned empty in the afternoon. Select the pick up & drop-in station to begin the journey.": "लंचबॉक्सेस दुपारी उशिरा उचलल्या जातात, मुख्यतः बायकल्स आणि ट्रेन वापरून वितरित केल्या जातात, आणि दुपारी रिकाम्या परत येतात. प्रवास सुरू करण्यासाठी पिक अप आणि ड्रॉप-इन स्टेशन निवडा.",
+          "Start Journey": "प्रवास प्रारंभ करा",
+          "Pick-Up Station": "पहिले स्टेशन",
+          "Drop Station": "शेवटचे स्टेशन"
+          
+        };
+
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+
+        function translateToMarathi() {
+          document.querySelectorAll('h2, p, h3, a, button').forEach(element => {
+            const originalText = element.textContent.trim();
+            if (translations[originalText]) {
+              element.innerHTML = translations[originalText];
+            }
+          });
+        }
+
+        function TravelPage() {
+          const lang = getQueryParam('lang');
+          window.location.href = `travel.html${lang ? '?lang=' + lang : ''}`;
+        }
+
+        if (getQueryParam('lang') === 'marathi') {
+          translateToMarathi();
+        }
+        </script>
+
+    <!--  -->
+
+
+
+
+    <!-- JavaScript -->
+    <script>
+        let activeButton = null;
+        let selectedStations = {};
+
+        function openFullscreen(buttonNumber) {
+            activeButton = buttonNumber;
+            document.getElementById('fullscreenContainer').style.display = 'flex';
+        }
+
+        function closeFullscreen(event) {
+            if (event.target === document.getElementById('fullscreenContainer')) {
+                document.getElementById('fullscreenContainer').style.display = 'none';
+            }
+        }
+
+        function selectStation(event) {
+            const stationElement = event.target.closest('.option');
+            if (!stationElement || stationElement.classList.contains('disabled')) return;
+
+            const stationName = stationElement.getAttribute('data-station');
+
+            if (activeButton === 1) {
+                document.getElementById('button1').innerText = stationName;
+                selectedStations[1] = stationName;
+            } else if (activeButton === 2) {
+                document.getElementById('button2').innerText = stationName;
+                selectedStations[2] = stationName;
+            }
+
+            stationElement.classList.add('disabled');
+            document.getElementById('fullscreenContainer').style.display = 'none';
+            updateDisabledStations();
+            updateStartJourneyButton();
+        }
+
+        function updateDisabledStations() {
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                const stationName = option.getAttribute('data-station');
+                if (stationName === selectedStations[1] || stationName === selectedStations[2]) {
+                    option.classList.add('disabled');
+                } else {
+                    option.classList.remove('disabled');
+                }
+            });
+        }
+
+        function updateStartJourneyButton() {
+            const startButton = document.getElementById('startJourneyButton');
+            if (selectedStations[1] && selectedStations[2]) {
+                startButton.classList.add('active');
+            } else {
+                startButton.classList.remove('active');
+            }
+        }
+
+        function redirectToNextPage() {
+            if (selectedStations[1] && selectedStations[2]) {
+                window.location.href = "travel.html"; // Replace with your next page URL
+            }
+        }
+
+        document.getElementById('stationsList').addEventListener('click', selectStation);
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="images/fevi.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Dabbawala Journey</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- main section -->
+  <div class="index-container">
+    
+    <img src="images/home-img.jpg" alt="dabbawala image main" class="banner-image">
+   
+    <div class="footer">
+      <div class="vitthal-img zoom-box">
+        <!-- <a onclick="navigateToPage('marathi')" href="do-you-know.html"><img src="images/footer-image1.png" alt="" class="vitthal-image1 marathi"></a> -->
+        <a class="marathi" onclick="navigateToPage('marathi')"><img src="images/footer-image1.png" class="vitthal-image1"></a>
+      </div>
+
+      <div >
+        <h1 class="title">The Dabba Journey</h1>
+        <p class="subtitle">डब्बा महाकाव्य</p>
+      </div>
+
+      <div class="vitthal-img zoom-box">
+        <a href="do-you-know.html"><img src="images/footer-image2.png" alt="" class="vitthal-image1"></a>
+      </div>
+    </div>
+
+  </div>
+  <!-- main section end -->
+
+
+  <script>
+    function navigateToPage(language) {
+      const url = language === 'marathi' ? 'do-you-know.html?lang=marathi' : 'do-you-know.html';
+      window.location.href = url;
+    }
+  </script>
+
+
+
+
+<!-- this is a animation effects -->
+ <style>
+    /* Element to animate */
+    .zoom-box {
+      animation: zoomIn 2s ease-in-out;
+    }
+
+    /* Keyframes for zoom-in animation */
+    @keyframes zoomIn {
+      0% {
+        transform: scale(0); /* Start at 0 size */
+        opacity: 0;          /* Completely transparent */
+      }
+      50% {
+        transform: scale(1.2); /* Slight overshoot */
+        opacity: 1;            /* Fully visible */
+      }
+      100% {
+        transform: scale(1);   /* Final size */
+      }
+    }
+  </style>
+
+
+<!-- this is for marathi translate -->
+
+
+
+</body>
+</html>

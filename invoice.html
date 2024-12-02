@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/fevi.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dabbawala Journey</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- main section -->
+    <div class="background">
+
+      <div>
+        <a href="index.html"><img src="images/logo.png" class="img-logo"></a>
+      </div>
+
+      <div class="cont-ct">
+
+        <div class="dabbawala-icon">
+            <img src="images/dabbawala-icon.png" class="icon">  
+          </div>
+
+
+        <div class="invoice-dabba">
+
+          
+          <h2>Invoice of Dabba</h2><br><br>
+
+          <div class="info">
+            <div>
+              <span>Dabba Number :-</span>
+              <h2>R BNR 9 EX 12</h2>
+            </div>
+            <div>
+              <span>Duration Of Dabba Service:-</span>
+              <h2>1 month (Oct To Nov)</h2>
+            </div>
+          </div>
+
+          <div class="info_1">
+            <div>
+              <span>Pick-Up Station:-</span>
+              <h2>Bandra</h2>
+            </div>
+            <div>
+              <span>Drop-In Station:-</span>
+              <h2>Churchgate</h2>
+            </div>
+          </div>
+
+        </div>  
+
+        <div class="scan-code zoom-box">
+          <div class="scan-me">
+            <img src="images/scan-me.png" alt="Scan-Code" />
+          </div>
+        </div>
+
+      </div>
+        
+
+        
+        <div class="road">
+          <div class="footer-text">॥ अन्नदान हेच श्रेष्ठदान ॥</div>
+           <div class="refresh-btn circle">
+              <img src="images/refresh.png" alt="refresh">
+            </div>
+        </div>
+
+    </div>
+  <!-- main section end -->
+
+
+<!-- for marathi -->
+
+<script>
+    // Translation dictionary for Marathi
+    const translations = {
+      "Invoice of Dabba": "डब्बा डिलिव्हरीची पावती",
+      "Pick-Up Station:-": "पहिले स्टेशन "
+      
+    };
+
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+
+        function translateToMarathi() {
+          document.querySelectorAll('h2, p, span').forEach(element => {
+            const originalText = element.textContent.trim();
+            if (translations[originalText]) {
+              element.innerHTML = translations[originalText];
+            }
+          });
+        }
+
+        function Journey() {
+          const lang = getQueryParam('lang');
+          window.location.href = `journey.html${lang ? '?lang=' + lang : ''}`;
+        }
+
+        if (getQueryParam('lang') === 'marathi') {
+          translateToMarathi();
+        }
+  </script>
+
+
+  <style>
+    /* Circle element */
+    .circle {
+/*      animation: spinOnce 2s ease-in-out forwards;*/
+animation: spin 5s linear infinite;
+    }
+
+    /* Keyframes for continuous spinning */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+
+/*  zoom   */
+
+/* Element to animate */
+    .zoom-box {
+      animation: zoomIn 2s ease-in-out;
+    }
+
+    /* Keyframes for zoom-in animation */
+    @keyframes zoomIn {
+      0% {
+        transform: scale(0); /* Start at 0 size */
+        opacity: 0;          /* Completely transparent */
+      }
+      50% {
+        transform: scale(1.2); /* Slight overshoot */
+        opacity: 1;            /* Fully visible */
+      }
+      100% {
+        transform: scale(1);   /* Final size */
+      }
+    }
+  </style>
+
+</body>
+</html>
